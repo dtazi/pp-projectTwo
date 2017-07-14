@@ -11,8 +11,8 @@ const passport      = require("passport");
 
 
 
-router.get("/private-page", ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render("passport/private", { user: req.user });
+router.get("/home-page", ensureLogin.ensureLoggedIn(), (req, res) => {
+  res.render("passport/home", { user: req.user });
 });
 // *************************   SIGNUP ******************
 router.get("/signup", (req, res, next) => {
@@ -59,14 +59,19 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/private-page",
+  successRedirect: "/home-page",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
 }));
 
 
-
+// ***************** BEGINNER *********************
+// router.get("/home/beginner", (req, res, next) => {
+//   res.render("passport/beginner", { user: req.user });
+// });
+//
+//
 
 
 module.exports = router;
